@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 const router = express.Router();
 
 
-router.get('/home', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
 
     const userFiles = await fileModel.find({ user: req.user.userId })
 
@@ -23,7 +23,7 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
         user: req.user.userId
     })
     await file.save()
-    res.redirect('/home')
+    res.redirect('/')
 })
 
 router.get('/download/:path', auth, async (req, res) => {
@@ -59,7 +59,7 @@ router.get('/delete/:path', auth, async (req, res) => {
         // Delete from database
         await fileModel.findOneAndDelete({ path, user: loggedInUser });
 
-        res.status(200).redirect('/home')
+        res.status(200).redirect('/')
     } catch (error) {
         console.error('Error deleting file:', error);
         res.status(500).json({ message: 'Error deleting file' });

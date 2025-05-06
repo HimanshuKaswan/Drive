@@ -1,6 +1,8 @@
 const Firebase = require('firebase-admin')
 
-const serviceAccount = require('../drive-443c5-firebase-adminsdk-fbsvc-00565506a8.json')
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG)
+
+serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
 
 const firebase = Firebase.initializeApp({
     credential: Firebase.credential.cert(serviceAccount),

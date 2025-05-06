@@ -5,7 +5,7 @@ const auth = async (req, res, next) => {
     const token = req.cookies.token
 
     if(!token){
-        return res.status(401).json({message: 'Unauthorized'})
+        return res.redirect('user/login')
     }
     
     try {
@@ -16,7 +16,7 @@ const auth = async (req, res, next) => {
         return next()
 
     } catch (error) {
-        return res.status(401).json({message: 'Unauthorized'})
+        return res.redirect('user/login')
     }
 }
 

@@ -46,7 +46,7 @@ router.post('/register',
 
         console.log(token)
         res.cookie('token', token)
-        res.redirect('/home')
+        res.redirect('/')
 })
 
 router.get('/login', (req, res) => {
@@ -88,7 +88,7 @@ router.post('/login',
 
         console.log(token)
         res.cookie('token', token)
-        res.redirect('/home')
+        res.redirect('/')
     }
 )
 
