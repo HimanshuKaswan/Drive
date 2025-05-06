@@ -1,7 +1,7 @@
 const multer = require('multer')
 const firebaseStorage = require('multer-firebase-storage')
 const firebase = require('./firebase.config')
-const serviceAccount = require('../drive-443c5-firebase-adminsdk-fbsvc-00565506a8.json')
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG)
 
 const storage = firebaseStorage({
     credentials: firebase.credential.cert(serviceAccount),
